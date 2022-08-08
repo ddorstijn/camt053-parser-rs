@@ -74,11 +74,17 @@ pub struct ValDt {
 }
 
 #[derive(Debug, Deserialize, PartialEq)]
+pub enum CdtDbtInd {
+    DBIT,
+    CRDT
+}
+
+#[derive(Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "PascalCase")]
 pub struct Ntry {
     pub ntry_ref: Option<String>,
     pub amt: f32,
-    pub cdt_dbt_ind: String,
+    pub cdt_dbt_ind: CdtDbtInd,
     pub val_dt: ValDt,
     pub ntry_dtls: Vec<NtryDtls>
 }
@@ -98,8 +104,7 @@ pub struct BkToCstmrStmt {
 }
 
 #[derive(Debug, Deserialize, PartialEq)]
+#[serde(rename_all = "PascalCase")]
 pub struct Document {
-    pub xmlns: String,
-    #[serde(rename = "BkToCstmrStmt")]
     pub bk_to_cstmr_stmt: BkToCstmrStmt
 }

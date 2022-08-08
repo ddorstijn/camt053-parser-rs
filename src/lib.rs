@@ -1,10 +1,10 @@
 mod schema;
 
 use std::{path::Path, fs::File, io::BufReader};
-use quick_xml::{de::{from_reader, DeError}};
+use serde_xml_rs::{from_reader, Error};
 
 /// Returns an XML stream either from a file or a URL.
-pub fn import_camt(source: &str) -> Result<schema::Document, DeError> {
+pub fn import_camt(source: &str) -> Result<schema::Document, Error> {
     let local_path = Path::new(source);
 
     let file = File::open(local_path).expect("File not found");
