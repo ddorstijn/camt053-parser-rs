@@ -1,5 +1,22 @@
-use chrono::NaiveDateTime;
+use chrono::NaiveDate;
 use serde::Deserialize;
+
+mod date_format {
+    use chrono::{NaiveDate};
+    use serde::{self, Deserialize, Deserializer};
+
+    const FORMAT: &'static str = "%Y-%m-%d";
+
+    pub fn deserialize<'de, D>(
+        deserializer: D,
+    ) -> Result<NaiveDate, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let s = String::deserialize(deserializer)?;
+        NaiveDate::parse_from_str(&s, FORMAT).map_err(serde::de::Error::custom)
+    }
+}
 
 #[derive(Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "PascalCase")]
@@ -52,7 +69,8 @@ pub struct NtryDtls {
 #[derive(Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "PascalCase")]
 pub struct ValDt {
-    pub dt: NaiveDateTime,
+    #[serde(with = "date_format")]
+    pub dt: NaiveDate,
 }
 
 #[derive(Debug, Deserialize, PartialEq)]
@@ -64,7 +82,6 @@ pub struct Ntry {
     pub val_dt: ValDt,
     pub ntry_dtls: Vec<NtryDtls>
 }
-
 
 #[derive(Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "PascalCase")]
