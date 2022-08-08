@@ -1,4 +1,4 @@
-mod schema;
+pub mod schema;
 
 use std::{path::Path, fs::File, io::BufReader};
 use serde_xml_rs::{from_reader, Error};

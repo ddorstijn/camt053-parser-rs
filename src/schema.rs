@@ -40,16 +40,16 @@ pub struct Acct {
 
 #[derive(Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "PascalCase")]
-pub struct DbtrCdtr {
+pub struct PartyInfo {
     pub nm: String,
 }
 
 #[derive(Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "PascalCase")]
 pub struct RltdPties {
-    dbtr: Option<DbtrCdtr>,
+    dbtr: Option<PartyInfo>,
     dbtr_acct: Option<Acct>,
-    cdtr: Option<DbtrCdtr>,
+    cdtr: Option<PartyInfo>,
     cdtr_acct: Option<Acct>     
 }
 
