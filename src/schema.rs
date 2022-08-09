@@ -55,7 +55,14 @@ pub struct RltdPties {
 
 #[derive(Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "PascalCase")]
+pub struct Refs {
+    pub tx_id: Option<String>
+}
+
+#[derive(Debug, Deserialize, PartialEq)]
+#[serde(rename_all = "PascalCase")]
 pub struct TxDtls {
+    pub refs: Option<Refs>,
     pub rltd_pties: Option<RltdPties>,
     pub rmt_inf: Option<RmtInf>
 }
