@@ -27,6 +27,7 @@ pub struct RmtInf {
 #[derive(Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "PascalCase")]
 pub struct Id {
+    #[serde(rename = "IBAN", default)]
     pub iban: Option<String>,
     pub othr: Option<String>
 }
