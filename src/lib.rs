@@ -19,7 +19,7 @@ mod tests {
 
     #[test]
     fn test() {
-        let doc = import_camt("example/example.xml").unwrap();
+        let doc = import_camt("example/example_complex.xml").unwrap();
         println!("{:?}", doc.bk_to_cstmr_stmt.stmt.iter().next().unwrap().ntry.iter().filter(|n| n.ntry_dtls.iter().any(|d| d.tx_dtls.iter().any(|t| t.rltd_pties.is_some() ))).collect::<Vec<&Ntry>>().len());
         println!("{:?}", doc.bk_to_cstmr_stmt.stmt.iter().next().unwrap().ntry.iter().next().unwrap().cdt_dbt_ind);
         assert!(doc.bk_to_cstmr_stmt.stmt.len() == 1);

@@ -20,8 +20,21 @@ mod date_format {
 
 #[derive(Debug, Deserialize, PartialEq)]
 #[serde(rename_all = "PascalCase")]
+pub struct CdtrRefInf {
+    r#ref: Option<String>
+}
+
+#[derive(Debug, Deserialize, PartialEq)]
+#[serde(rename_all = "PascalCase")]
+pub struct Strd {
+    cdtr_ref_inf: Option<CdtrRefInf>
+}
+
+#[derive(Debug, Deserialize, PartialEq)]
+#[serde(rename_all = "PascalCase")]
 pub struct RmtInf {
-    pub ustrd: String
+    pub ustrd: Option<String>,
+    pub strd: Option<Strd>
 }
 
 #[derive(Debug, Deserialize, PartialEq)]
